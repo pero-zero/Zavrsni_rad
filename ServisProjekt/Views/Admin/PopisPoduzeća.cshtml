@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ServisProjekt.Models.Poduzeće>
+
+@{
+    ViewData["Title"] = "Popis poduzeća";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<form method="get">
+    <button asp-controller="Admin" asp-action="DodajPoduzeće">Dodaj novo poduzeće</button>
+</form>
+<div>
+    <table class="table">
+        <thead class="text-center">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.PoduzećeID)</th>
+                <th>@Html.DisplayNameFor(model => model.Naziv)</th>
+                <th>@Html.DisplayNameFor(model => model.Adresa)</th>
+                <th>@Html.DisplayNameFor(model => model.Grad)</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>@Html.DisplayFor(modelItem => item.PoduzećeID)</th>
+                    <th>@Html.DisplayFor(modelItem => item.Naziv)</th>
+                    <th>@Html.DisplayFor(modelItem => item.Adresa)</th>
+                    <th>@Html.DisplayFor(modelItem => item.Grad)</th>
+                    <th>
+                        <a asp-action="DeletePoduzeće" asp-route-PoduzećeID="@item.PoduzećeID">Delete</a> |
+                        <a asp-action="EditPoduzeće" asp-route-PoduzećeID="@item.PoduzećeID">Edit</a>
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

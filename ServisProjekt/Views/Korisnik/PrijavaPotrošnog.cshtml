@@ -1,0 +1,38 @@
+﻿@model ServisProjekt.Models.KorisnikViewModel.PrijavaPotrošnogModel
+
+@{
+    ViewData["Title"] = "Narudžba potrošnog materijala";
+}
+<script>
+    function promjena() {
+        document.getElementById("obiteljIDPost").innerHTML = document.getElementById("obiteljID");
+    }
+</script>
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<div class="form-group">
+    <form method="post">
+        <select id="obiteljID" asp-for="ObiteljPrintera.ObiteljPrinteraID" asp-items="@Model.ObiteljPrintera.SerijaPrintera" onchange="this.form.submit()">
+            <option selected disabled>Odabir printera</option>
+        </select>
+    </form>
+</div>
+@if (@Model.Potrošni != null)
+{
+    <div class="form-group" id="Potrosni">
+        <form method="post" action="NapravljenaPrijava">
+            <input asp-for="ObiteljPrintera.ObiteljPrinteraID" id="obiteljIDPost" onchange="promjena()" hidden/>
+            <textarea rows="5" style="resize:none" asp-for="Opis" class="form-control"></textarea>
+            @for (int i = 0; i < Model.Potrošni.Count; i++)
+            {
+                
+                <div class="form-group">
+                    @Html.HiddenFor(m => m.Potrošni[i].PredmetID)
+                    @Html.Label(Model.Potrošni[i].Naziv):
+                    @Html.EditorFor(m => m.Potrošni[i].Količina)
+                </div>
+            }
+            <button type="submit" class="btn btn-default">Prijavi</button>
+        </form>
+    </div>
+}

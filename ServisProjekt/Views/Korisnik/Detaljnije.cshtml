@@ -1,0 +1,68 @@
+﻿@model ServisProjekt.Models.KorisnikViewModel.PopisNarudžbiModel
+@{
+    ViewData["Title"] = "Detaljnije";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<dl class="form-row">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.NarudžbaID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.NarudžbaID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Naručitelj)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Naručitelj)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.SerijskiBrojPrintera)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.SerijskiBrojPrintera)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.ŠifraGreške)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.ŠifraGreške)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Opis)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.TextAreaFor(model => model.Opis, new { disabled = "disabled", rows = "5", cols = "55" })
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.StatusNarudžbe)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.StatusNarudžbe)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.VrijemeNarudžbe)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.VrijemeNarudžbe)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.VrstaNarudžbe)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.VrstaNarudžbe)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Counter)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Counter)
+    </dd>
+</dl>
+<form asp-action="StornirajPrijavu">
+    <input type="hidden" asp-for="NarudžbaID" />
+    <input type="submit" value="Storniraj" class="btn btn-danger" /> |
+    <a asp-action="PopisPrijava">Nazad</a>
+</form>

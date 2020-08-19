@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <UserSecretsId>aspnet-ServisProjekt-6D5973FF-4EDA-4D0D-8940-0B2B11F7A1FC</UserSecretsId>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190822184400_DodanStatusNarudžbe.cs" />
+    <Compile Remove="Migrations\20190822184400_DodanStatusNarudžbe.Designer.cs" />
+    <Compile Remove="Migrations\20190822184645_DodanStatusNarudžbe.cs" />
+    <Compile Remove="Migrations\20190822184645_DodanStatusNarudžbe.Designer.cs" />
+    <Compile Remove="Migrations\20190822185126_DodanStatusNarudžbe.cs" />
+    <Compile Remove="Migrations\20190822185126_DodanStatusNarudžbe.Designer.cs" />
+    <Compile Remove="Migrations\20190822190115_DodanStatusNarudžbe.cs" />
+    <Compile Remove="Migrations\20190822190115_DodanStatusNarudžbe.Designer.cs" />
+    <Compile Remove="Migrations\20190918090530_RadniNalog1.cs" />
+    <Compile Remove="Migrations\20190918090530_RadniNalog1.Designer.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+  </ItemGroup>
+
+</Project>

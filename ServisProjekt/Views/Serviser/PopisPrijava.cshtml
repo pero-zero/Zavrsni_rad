@@ -1,0 +1,78 @@
+﻿@model  ServisProjekt.Models.ServiserViewModel.PopisPrijavaISearchPoPrinteruIPoduzećuModel
+@{
+    ViewData["Title"] = "Popis Prijava";
+}
+
+    <head>
+        <script type="text/javascript">
+            function Check() {
+                document.getElementById("checkbox").checked = true;
+            }
+            function Uncheck() {
+                document.getElementById("checkbox").checked = false;
+            }
+    </script>
+    </head>
+
+<div class="text-center">
+    <h2>@ViewData["Title"]</h2>
+</div>
+<div class="text-left">
+    <form method="post" style="float:left; margin-right: 10px">
+        <label>Odabir poduzeća:</label>
+        <select asp-for="PopisPoduzeća.PoduzećeID" asp-items="@Model.PopisPoduzeća.PoduzećePopis" onchange="Check();this.form.submit()">
+            <option selected value="0">Sva poduzeća.</option>
+        </select>
+        <span asp-validation-for="PopisPoduzeća.PoduzećePopis" class="text-danger"></span>
+        <input asp-for="PopisPoduzeća.IsChanged" id="checkbox" hidden/>
+    
+        <label>Odabir printera:</label>
+        <select asp-for="PopisPrintera.PrinterID" asp-items="@Model.PopisPrintera.PrinterPopis" onchange="Uncheck();this.form.submit()">
+            <option selected value="0">Svi printeri.</option>
+        </select>
+        <span asp-validation-for="PopisPrintera.PrinterPopis" class="text-danger"></span>
+    </form>
+</div>
+    <table class="table">
+        <thead>
+            <tr class="text-center">
+                <th>@Html.DisplayNameFor(model => model.PopisNarudžbi.FirstOrDefault().NarudžbaID)</th>
+                <th>@Html.DisplayNameFor(model => model.PopisNarudžbi.FirstOrDefault().Poduzeće)</th>
+                <th>@Html.DisplayNameFor(model => model.PopisNarudžbi.FirstOrDefault().Naručitelj)</th>
+                <th>@Html.DisplayNameFor(model => model.PopisNarudžbi.FirstOrDefault().VrstaNarudžbe)</th>
+                <th>@Html.DisplayNameFor(model => model.PopisNarudžbi.FirstOrDefault().SerijskiBrojPrintera)</th>
+                <th>@Html.DisplayNameFor(model => model.PopisNarudžbi.FirstOrDefault().Opis)</th>
+                <th>@Html.DisplayNameFor(model => model.PopisNarudžbi.FirstOrDefault().VrijemeNarudžbe)</th>
+                <th>@Html.DisplayNameFor(model => model.PopisNarudžbi.FirstOrDefault().StatusNarudžbe)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.PopisNarudžbi)
+            {
+                <tr class="text-center">
+                    <th>
+                        @if (item.VrstaNarudžbe != "Potrošni")
+                        {
+                            <a asp-action="Detaljnije" asp-route-NarudžbaID="@item.NarudžbaID">@Html.DisplayFor(modelItem => item.NarudžbaID)</a>
+                        }
+                        @if (item.VrstaNarudžbe == "Potrošni")
+                        {
+                            <a asp-action="DetaljnijePotrošni" asp-route-NarudžbaID="@item.NarudžbaID">@Html.DisplayFor(modelItem => item.NarudžbaID)</a>
+                        }
+                    </th>
+                    <th>@Html.DisplayFor(modelItem => item.Poduzeće)</th>
+                    <th>@Html.DisplayFor(modelItem => item.Naručitelj)</th>
+                    <th>@Html.DisplayFor(modelItem => item.VrstaNarudžbe)</th>
+                    <th>@Html.DisplayFor(modelItem => item.SerijskiBrojPrintera)</th>
+                    <th>@Html.DisplayFor(modelItem => item.Opis)</th>
+                    <th>@Html.DisplayFor(modelItem => item.VrijemeNarudžbe)</th>
+                    <th>@Html.DisplayFor(modelItem => item.StatusNarudžbe)</th>
+                </tr>
+                
+            }
+        </tbody>
+    </table>
+
+        @section Scripts {
+            @await Html.PartialAsync("_ValidationScriptsPartial")
+        }

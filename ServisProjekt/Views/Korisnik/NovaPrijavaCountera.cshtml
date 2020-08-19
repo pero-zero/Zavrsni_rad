@@ -1,0 +1,26 @@
+﻿@model ServisProjekt.Models.KorisnikViewModel.PrijavaCounteraModel
+
+@{
+    ViewData["Title"] = "Prijava countera";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<div>
+    <form method="post">
+        <div class="form-group">
+            <label>Odaberi printer:</label>
+            <select asp-for="PopisPrintera.PrinterID" asp-items="@Model.PopisPrintera.PrinterPopis" class="form-control">
+                <option selected disabled>Odaberi printer</option>
+            </select>
+            <span asp-validation-for="PopisPrintera.PrinterPopis" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Counter:</label>
+            <input asp-for="PrijavaServisaModel.Counter" />
+            <span asp-validation-for="PrijavaServisaModel.Counter" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-default">Prijavi</button> |
+        <a asp-action="PopisPrijava">Nazad</a>
+    </form>
+</div>

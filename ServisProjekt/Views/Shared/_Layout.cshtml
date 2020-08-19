@@ -1,0 +1,143 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ServisProjekt</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+    </environment>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <label class="navbar-brand">ServisProjekt</label>
+                @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarsupportedcontent"
+                        aria-expanded="false" aria-label="toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>*@
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    @await Html.PartialAsync("_LoginPartial")
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Korisnik"))
+                        {
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item">
+                                    <a class="text-dark nav-link" asp-area="" asp-controller="Korisnik" asp-action="PopisPrijava">Popis prijava</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="text-dark nav-link" asp-area="" asp-controller="Korisnik" asp-action="NovaPrijavaCountera">Prijava countera</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="text-dark nav-link" asp-area="" asp-controller="Korisnik" asp-action="NovaPrijavaKvara">Prijava kvara</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="text-dark nav-link" asp-area="" asp-controller="Korisnik" asp-action="PrijavaPotrošnog">Prijava potrošnog</a>
+                                </li>
+                            </ul>
+                            @*<div class="navbar-nav flex-grow-1">
+                                <div class="dropdown">
+                                    <button class="dropbtn text-dark">
+                                        Prijava
+                                    </button>
+                                    <div class="dropdown-content">
+                                        <a class="text-dark" asp-area="" asp-controller="Korisnik" asp-action="PopisPrijava">Popis prijava</a>
+                                        <a class="text-dark" asp-area="" asp-controller="Korisnik" asp-action="NovaPrijavaCountera">Nova prijava countera</a>
+                                        <a href="#">Page 1-3</a>
+                                    </div>
+                                </div>
+                            </div>*@
+
+                        }
+                        @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Serviser"))
+                        {
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Serviser" asp-action="PopisPrijava">Popis prijava</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Serviser" asp-action="PopisKorisnika">Popis korisnika</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Serviser" asp-action="PopisPoduzeća">Popis Poduzeća</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Serviser" asp-action="PopisNaSkladištu">Skladište</a>
+                                </li>
+                            </ul>
+                        }
+                        @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Administrator"))
+                        {
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="PopisPrijava">Popis prijava</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="PopisKorisnika">Popis korisnika</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="PopisPoduzeća">Popis Poduzeća</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="PopisNaSkladištu">Skladište</a>
+                                </li>
+                            </ul>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container" style="margin-left: 25px; margin-right: 25px;">
+        <partial name="_CookieConsentPartial" />
+        
+        <main role="main" class="pb-3" style="width: 96%; position: absolute; height:78%; overflow-y:scroll; overflow-x:hidden;">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2019 - ServisProjekt - Privacy
+        </div>
+    </footer>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

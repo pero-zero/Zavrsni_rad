@@ -1,0 +1,49 @@
+﻿@model ServisProjekt.Models.AdminViewModel.DodajPredmetModel
+@{
+    ViewData["Title"] = "Dodaj predmet";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<h5 class="text-danger text-center">@Model.Error</h5>
+<div>
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="PredmetID"></label>
+            <input asp-for="PredmetID" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Količina"></label>
+            <input asp-for="Količina" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Naziv"></label>
+            <input asp-for="Naziv" />
+        </div>
+        <div class="form-group">
+            <label asp-for="MinimalnaKoličina"></label>
+            <input asp-for="MinimalnaKoličina" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Cijena"></label>
+            <input asp-for="Cijena" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Dobavljač"></label>
+            <input asp-for="Dobavljač" />
+        </div>
+        <div class="form-group">
+            <label asp-for="ObiteljPrintera"></label>
+            <select asp-for="ObiteljPrinteraID" asp-items="@Model.ObiteljPrintera">
+                <option selected disabled>Odaberi obitelj</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="VrstaPredmeta"></label>
+            <select asp-for="VrstaPredmetaID" asp-items="@Model.VrstaPredmeta">
+                <option selected disabled>Odaberi vrstu</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-default">Dodaj</button>
+    </form>
+</div>

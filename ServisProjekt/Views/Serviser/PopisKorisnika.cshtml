@@ -1,0 +1,41 @@
+﻿@model ServisProjekt.Models.ServiserViewModel.PopisKorisnikaISearchModel
+@{
+    ViewData["Title"] = "Popis korisnika";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<div class="text-left">
+    <form method="post">
+        <label>Odabir poduzeća:</label>
+        <select asp-for="PopisPoduzeća.PoduzećeID" asp-items="@Model.PopisPoduzeća.PoduzećePopis" onchange="this.form.submit()">
+            <option selected disabled>Odaberi poduzeće.</option>
+        </select>
+        <span asp-validation-for="PopisPoduzeća.PoduzećePopis" class="text-danger"></span>
+    </form>
+</div>
+<div>
+    <table class="table">
+        <thead class="text-center">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.PopisKorisnika.FirstOrDefault().Ime)</th>
+                <th>@Html.DisplayNameFor(model => model.PopisKorisnika.FirstOrDefault().Prezime)</th>
+                <th>@Html.DisplayNameFor(model => model.PopisKorisnika.FirstOrDefault().BrojTelefona)</th>
+                <th>@Html.DisplayNameFor(model => model.PopisKorisnika.FirstOrDefault().Email)</th>
+                <th>@Html.DisplayNameFor(model => model.PopisKorisnika.FirstOrDefault().Poduzeće)</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            @foreach (var item in Model.PopisKorisnika)
+            {
+                <tr>
+                    <th>@Html.DisplayFor(modelItem => item.Ime)</th>
+                    <th>@Html.DisplayFor(modelItem => item.Prezime)</th>
+                    <th>@Html.DisplayFor(modelItem => item.BrojTelefona)</th>
+                    <th>@Html.DisplayFor(modelItem => item.Email)</th>
+                    <th>@Html.DisplayFor(modelItem => item.Poduzeće)</th>
+                </tr>
+            }
+         </tbody>
+</table>
+</div>

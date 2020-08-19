@@ -1,0 +1,63 @@
+﻿@model ServisProjekt.Models.AdminViewModel.DetaljnijeRadniNalogModel
+
+@{
+    ViewData["Title"] = "Radni nalog";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<div>
+    <dl class="form-row" style="float:left; width: 50%;">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RadniNalog.RadniNalogID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RadniNalog.RadniNalogID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RadniNalog.Serviser)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RadniNalog.Serviser)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RadniNalog.Opis)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.TextAreaFor(model => model.RadniNalog.Opis, new { disabled = "disabled", rows = "5", cols = "55" })
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RadniNalog.VrijemeDolaska)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RadniNalog.VrijemeDolaska)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RadniNalog.VrijemeOdlaska)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RadniNalog.VrijemeOdlaska)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RadniNalog.Counter)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RadniNalog.Counter)
+        </dd>
+    </dl>
+    <dl class="form-row" style="float:left; width: 50%;">
+        @foreach (var item in Model.PopisPredmeta)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayName(item.Naziv)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.PredmetID)
+                <span class="font-weight-bold">@Html.DisplayNameFor(model => item.Količina):</span>
+                @Html.DisplayFor(model => item.Količina)
+            </dd>
+        }
+    </dl>
+</div>
+<div style="clear:both">
+    <a asp-action="PopisPrijava">Nazad</a>
+</div>

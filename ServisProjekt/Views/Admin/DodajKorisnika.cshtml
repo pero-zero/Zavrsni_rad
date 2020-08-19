@@ -1,0 +1,64 @@
+﻿@model ServisProjekt.Models.AdminViewModel.AddUserModel
+@{
+    ViewData["Title"] = "Dodaj korisnika";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <form method="post" style="width:100%">
+        <h4>Dodaj novog korisnika.</h4>
+        <hr />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="col-md-4" style="width:50%; float:left">
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="from-group">
+                <label asp-for="PhoneNumber"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4" style="float:left; width: 49%;">
+            <div class="form-group">
+                <label asp-for="Ime"></label>
+                <input asp-for="Ime" class="form-control" />
+                <span asp-validation-for="Ime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prezime"></label>
+                <input asp-for="Prezime" class="form-control" />
+                <span asp-validation-for="Prezime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Poduzeće"></label>
+                <select asp-for="PoduzećeID" asp-items="@Model.Poduzeće" class="form-control"></select>
+                <span asp-validation-for="Poduzeće" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VrstaKorisnika"></label>
+                <select asp-for="RoleID" asp-items="@Model.VrstaKorisnika" class="form-control"></select>
+                <span asp-validation-for="VrstaKorisnika" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-default">Dodaj</button>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

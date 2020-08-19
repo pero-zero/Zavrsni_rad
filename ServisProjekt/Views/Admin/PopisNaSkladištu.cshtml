@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ServisProjekt.Models.AdminViewModel.PredmetNaSkladištu>
+@{
+    ViewData["Title"] = "Popis skladišta";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<form>
+    <button asp-controller="Admin" asp-action="DodajPredmet">Dodaj novi predmet</button>
+</form>
+<div>
+    <table class="text-center table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.PredmetID)</th>
+                <th>@Html.DisplayNameFor(model => model.Naziv)</th>
+                <th>@Html.DisplayNameFor(model => model.ObiteljPrintera)</th>
+                <th>@Html.DisplayNameFor(model => model.KolicinaNaSkladištu)</th>
+                <th>@Html.DisplayNameFor(model => model.Skladište)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <th>@Html.DisplayFor(modelItem => item.PredmetID)</th>
+                    <th>@Html.DisplayFor(modelItem => item.Naziv)</th>
+                    <th>@Html.DisplayFor(modelItem => item.ObiteljPrintera)</th>
+                    <th>@Html.DisplayFor(modelItem => item.KolicinaNaSkladištu)</th>
+                    <th>@Html.DisplayFor(modelItem => item.Skladište)</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

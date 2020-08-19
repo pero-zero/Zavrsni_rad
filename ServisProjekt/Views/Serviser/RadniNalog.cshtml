@@ -1,0 +1,53 @@
+﻿@model ServisProjekt.Models.ServiserViewModel.NalogPredmetNarudžbaModel
+@{
+    ViewData["Title"] = "Radni nalog";
+}
+    <head>
+        <script type="text/javascript">
+            function Check() {
+                document.getElementById("checkbox").checked = true;
+            }
+            function Uncheck() {
+                document.getElementById("checkbox").checked = false;
+            }
+        </script>
+        
+    </head>
+<h2 class="text-center">@ViewData["Title"]</h2>
+<form method="post">
+    <div style="float:left">
+        <div class="form-group">
+            <label>Opis problema:</label>
+            <textarea rows="5" style="resize:none" asp-for="Nalog.Opis" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Vrijeme dolaska:</label>
+            <input asp-for="Nalog.VrijemeDolaska" />
+        </div>
+        <div class="form-group">
+            <label>Vrijeme odlaska:</label>
+            <input asp-for="Nalog.VrijemeOdlaska" />
+        </div>
+        <div class="form-group">
+            <label>Counter:</label>
+            <input asp-for="Nalog.Counter" />
+        </div>
+    </div>
+    <div style="float:left; margin-left: 25px">
+        @for(var i = 0; i < Model.Otpis.Count(); i++)
+        {
+            <div class="from-group">
+                <select asp-for="Otpis[i].PredmetID" asp-items="Model.Otpis[i].Predmet" id="@i" onchange=" Check(); this.form.submit(); Uncheck()">
+                    <option disabled selected>Odaberi dio</option>
+                </select>
+                <label>Količina:</label>
+                <input asp-for="Otpis[i].Količina" />
+            </div>
+        }
+    </div>
+    <div style="clear:both">
+        <input asp-for="DodajJoš" id="checkbox" hidden />
+        <input asp-for="Narudžba" value="@Model.Narudžba" hidden/>
+        <input type="submit" value="Napravi nalog" class="btn" />
+    </div>
+</form>

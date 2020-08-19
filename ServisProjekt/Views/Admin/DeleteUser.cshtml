@@ -1,0 +1,37 @@
+﻿@model ServisProjekt.Models.ApplicationUser
+
+<div class="text-center">
+    <h3>Jeste li sigurni da želite pobrisati ovog korisnika?</h3>
+    <h4>Prilikom brisanja korisnika brišu se sve prijave koje je on napravio.</h4>
+</div>
+
+<div>
+    <h4>Poduzeće</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+
+    <form asp-action="DeleteUserConfirmed">
+        <input type="hidden" asp-for="Email" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="PopisKorisnika">Nazad</a>
+    </form>
+</div>
