@@ -13,7 +13,7 @@ Izgled ekrana popisa prijava: </br>
 
 
 
-<img src="./slike/Popis korisnika administrator + seviser.png" raw=true/>
+<img src="./slike/Popis prijava admin i serviser.PNG" raw=true/>
 
 
 
