@@ -8,9 +8,7 @@ Nakon logina korisnik ima uvid u popis prijavljenih printera, detaljnije izglede
 Ovisno o dozvolama koje user ima.
 
 
-<div>
-<p style="text-align: center">Izgled ekrana popisa prijava: </p></br>
-</div>
+Izgled ekrana popisa prijava:</br>
 
 
 <img src="./slike/Popis prijava admin i serviser.PNG" raw=true/>
